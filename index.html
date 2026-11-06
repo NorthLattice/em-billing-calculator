@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An offline-capable time-based office E/M prolonged-service calculator for CPT 99417 and Medicare G2212.">
+<title>Prolonged E/M · Time-based billing calculator</title>
+<style>
+:root{color-scheme:light;--ink:#153b3b;--muted:#536966;--line:#d8e2dd;--accent:#09685c;--paper:#fff;--bg:#f3f5ef}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1080px;margin:auto;padding:42px 24px}header{max-width:750px;margin-bottom:30px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(32px,5vw,52px);line-height:1.12;letter-spacing:-.045em;margin:14px 0}h2{font-size:20px;letter-spacing:-.02em;margin:0 0 20px}h3{font-size:16px;margin:0 0 8px}p{margin:0 0 16px}.intro{color:var(--muted);font-size:18px}.layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px}fieldset{padding:0;border:0;margin:0 0 24px;min-width:0}legend,label[for=minutes]{font-weight:650;margin-bottom:9px;display:block}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{position:relative;cursor:pointer}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice span{display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;text-align:center;font-size:14px}.choice input:checked+span{background:#e7f3ed;border-color:var(--accent);color:#07594f;box-shadow:inset 0 0 0 1px var(--accent)}.choice input:focus-visible+span,button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #b26a18;outline-offset:4px}.number-wrap{display:flex;align-items:center;gap:12px}input[type=number]{width:170px;max-width:75%;padding:12px 16px;border:1px solid #91aaa1;border-radius:12px;font:650 32px system-ui;color:var(--ink);background:white}input[type=range]{width:100%;accent-color:var(--accent);margin:20px 0 0;min-height:28px}.range-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}.small{font-size:13px;color:var(--muted)}.hint{margin:12px 0 0}.error{color:#9c351a;min-height:24px;font-size:13px;margin-top:8px}.result{background:#123e38;color:#fff;min-height:385px}.result .eyebrow,.result .small{color:#c0d9cf}.result h2{font-size:15px;font-weight:500;margin:8px 0 24px;color:#d2e6dc}.code{font-size:40px;line-height:1.2;letter-spacing:-.035em;font-weight:700;margin:0 0 10px}.addon{font-size:22px;margin-bottom:24px}.next{border-top:1px solid #477068;padding-top:20px;margin-top:20px}.next strong{display:block;font-size:23px}.notice{background:#fff2d9;color:#654717;padding:14px;border-radius:10px;font-size:14px;margin:16px 0}.summary{margin-top:24px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}caption{text-align:left;font-weight:700;font-size:20px;margin-bottom:14px}th,td{padding:14px 12px;border-bottom:1px solid var(--line)}thead th{color:var(--muted);font-size:12px}th:first-child,td:first-child{padding-left:0}tbody tr:last-child>*{border-bottom:0}.notes{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px}.notes p{font-size:14px;color:var(--muted)}details{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}summary{cursor:pointer;font-weight:650}li{margin:8px 0}a{color:var(--accent);text-underline-offset:3px}footer{font-size:12px;color:var(--muted);padding:24px 0 0;display:flex;flex-wrap:wrap;gap:8px 24px}noscript p{background:#fff2d9;padding:20px}button{background:transparent;border:1px solid var(--line);padding:7px 12px;border-radius:8px;color:var(--ink);cursor:pointer;font:inherit;font-size:13px;margin-top:16px}@media(max-width:700px){main{padding:26px 16px}.layout,.notes{grid-template-columns:1fr}.card{padding:22px}.result{min-height:0}.code{font-size:36px}th,td{padding:12px 8px}.choices{gap:6px}}@media print{body{background:white}main{max-width:none;padding:0}.result{background:white;color:#153b3b}.result .small,.result h2,.result .eyebrow{color:#536966}button,input[type=range],.range-labels{display:none}.card{break-inside:avoid}details{display:block}}
+.threshold-explainer{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}.threshold-explainer h3{margin-bottom:8px}.threshold-selection{font-size:14px;font-weight:650;margin-bottom:12px}.threshold-cards{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}.threshold-card{padding:12px;border:1px solid var(--line);border-radius:10px;background:#f3f8f4;min-width:0}.threshold-card span{display:block;font-size:12px;color:var(--muted)}.threshold-card strong{display:block;color:var(--accent);font-size:18px;margin:6px 0 2px}.threshold-explainer .small{margin:12px 0 0}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">Office &amp; outpatient · Coding reference</div><h1>Prolonged E/M Billing Calculator</h1><p class="intro">Prolonged E/M billing calculator. Compare CPT and Medicare time thresholds for new and established patient visits.</p></header>
+<noscript><p>Enable JavaScript to use the calculator. The threshold reference below remains available.</p></noscript>
+<div class="layout">
+<section class="card" aria-labelledby="input-title"><h2 id="input-title">Enter the encounter time</h2>
+<fieldset><legend>Patient type</legend><div class="choices"><label class="choice"><input type="radio" name="patient" value="new" checked><span>New patient</span></label><label class="choice"><input type="radio" name="patient" value="established"><span>Established patient</span></label></div></fieldset>
+<fieldset><legend>Billing methodology</legend><div class="choices"><label class="choice"><input type="radio" name="method" value="cpt" checked><span>Commercial · CPT</span></label><label class="choice"><input type="radio" name="method" value="cms"><span>Medicare · CMS</span></label></div><p class="small hint">Choose the rules the specific payer follows.</p></fieldset>
+<label for="minutes">Total qualifying physician/QHP time</label><div class="number-wrap"><input id="minutes" type="number" inputmode="numeric" min="0" max="1440" step="1" value="75" aria-describedby="time-help error"><span>minutes</span></div>
+<p id="time-help" class="small hint">Completed whole minutes on the date of service. Do not round up. Enter 0–1,440 minutes.</p>
+<input id="slider" type="range" min="0" max="180" step="1" value="75" aria-label="Adjust qualifying minutes, 0 to 180"><div class="range-labels"><span>0 min</span><span>Quick adjust · 180 min</span></div><p class="small hint">For more than 180 minutes, use the number field.</p><div id="error" class="error" role="alert"></div>
+<button id="reset" type="button">Reset example</button>
+<section class="threshold-explainer" aria-labelledby="threshold-title">
+<h3 class="eyebrow" id="threshold-title">How the threshold works</h3>
+<div id="threshold-explanation" aria-live="polite" aria-atomic="true"></div>
+</section>
+</section>
+<section class="card result" aria-label="Calculated time-based result" aria-live="polite" aria-atomic="true"><div class="eyebrow">Time-based result</div><div id="result"><p>Enter valid minutes to calculate.</p></div></section>
+</div>
+<section class="card summary"><div class="table-wrap"><table><caption>Thresholds at a glance</caption><thead><tr><th scope="col">Patient / base code</th><th scope="col">Base minimum</th><th scope="col">First 99417<br>CPT</th><th scope="col">First G2212<br>CMS</th></tr></thead><tbody><tr><th scope="row">New · 99205</th><td>60 min</td><td>75 min</td><td>89 min</td></tr><tr><th scope="row">Established · 99215</th><td>40 min</td><td>55 min</td><td>69 min</td></tr></tbody></table></div><p class="small hint">Each subsequent prolonged-service unit requires 15 more qualifying minutes. No partial units or midpoint rounding.</p>
+<div class="notes"><div><h3>Why two thresholds?</h3><p>CPT starts the first prolonged unit 15 minutes beyond the base minimum. CMS uses a later threshold: 89 minutes for 99205 and 69 for 99215. The base code still starts at 60 or 40 minutes under either method.</p><h3>Choose the visit by time</h3><p>This tool assumes time-based selection of 99205 or 99215. Although base office E/M codes may also be selected by medical decision-making, these prolonged-service calculations require selection by time.</p></div><div><h3>Document qualifying work</h3><p>Document the total time and services performed. Include qualifying physician or qualified health care professional (QHP) work on the encounter date, such as record review, evaluation, counseling, and documentation. Exclude staff time, separately reported services, travel, and overlapping time counted twice.</p><h3>Check the payer</h3><p>Commercial and Medicare Advantage policies may differ. Confirm code acceptance, coverage, unit limits, and edits for the service date. Results are educational, not a payment guarantee. Other settings and code families are outside this tool’s scope.</p></div></div>
+<details><summary>References &amp; review notes</summary><ul class="small"><li><a href="https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/Downloads/clm104c12.pdf">CMS Medicare Claims Processing Manual, Chapter 12</a> — §30.6.15, prolonged services and G2212 tables.</li><li><a href="https://www.ama-assn.org/system/files/2025-cpt-corrections-errata.pdf">AMA CPT 2025 errata and technical corrections</a> — 99417 guidance and 75/55-minute thresholds.</li><li><a href="https://www.ama-assn.org/system/files/2023-e-m-descriptors-guidelines.pdf">AMA E/M descriptors and guidelines</a> — qualifying time and office/outpatient guidance.</li></ul><p class="small">Threshold logic last reviewed November 5, 2026 against the linked sources. This is not a comprehensive validation of every 2026 payer policy. Recheck current CPT, CMS, and payer guidance before use. CPT is a registered trademark of the American Medical Association.</p></details>
+</section>
+<footer><span>No PHI: enter minutes only. No patient identifiers.</span><span>Calculations stay in your browser. No analytics, storage, or data submission.</span><span>Last reviewed · November 5, 2026</span></footer>
+</main>
+<script>
+'use strict';
+// Pure calculation, kept separate from the interface for boundary testing.
+function calculate(patient, method, raw) {
+  if (!['new','established'].includes(patient) || !['cpt','cms'].includes(method)) return null;
+  const text = String(raw).trim();
+  if (!/^\d+$/.test(text)) return null;
+  const minutes = Number(text);
+  if (!Number.isSafeInteger(minutes) || minutes < 0 || minutes > 1440) return null;
+  const base = patient === 'new' ? 60 : 40;
+  const code = patient === 'new' ? '99205' : '99215';
+  const first = base + (method === 'cpt' ? 15 : 29);
+  const addon = method === 'cpt' ? '99417' : 'G2212';
+  const units = minutes < first ? 0 : Math.floor((minutes-first)/15)+1;
+  const eligible = minutes >= base;
+  const next = !eligible ? base : first + units*15;
+  return {minutes,base,code,first,addon,units,eligible,next,remaining:next-minutes};
+}
+const minutesInput=document.getElementById('minutes');
+const slider=document.getElementById('slider');
+function render(){
+  const patient=document.querySelector('input[name="patient"]:checked').value;
+  const method=document.querySelector('input[name="method"]:checked').value;
+  const threshold=calculate(patient,method,0);
+  const explanation=`<p class="threshold-selection">${threshold.code} · ${method==='cpt'?'Commercial CPT':'Medicare CMS'}</p>
+    <div class="threshold-cards">
+      <div class="threshold-card"><span>Base E/M range</span><strong>${threshold.base}–${threshold.base+14} min</strong><span>${threshold.code}</span></div>
+      <div class="threshold-card"><span>First prolonged-service unit</span><strong>${threshold.first} min</strong><span>${threshold.addon} · 1 unit</span></div>
+    </div>
+    <p class="small">First prolonged-service unit begins 15 minutes beyond the base code's ${method==='cpt'?'minimum':'maximum'} time. Each subsequent prolonged-service unit requires another 15 minutes.</p>`;
+  const explanationPanel=document.getElementById('threshold-explanation');
+  if(explanationPanel.innerHTML!==explanation) explanationPanel.innerHTML=explanation;
+  const r=calculate(patient,method,minutesInput.value);
+  document.getElementById('error').textContent=r?'':'Enter a whole number from 0 to 1,440. No decimals or rounding.';
+  minutesInput.setAttribute('aria-invalid',String(!r));
+  slider.disabled=!r || r.minutes>180;
+  if(r && r.minutes<=180) slider.value=r.minutes;
+  if(!r){document.getElementById('result').innerHTML='<h2>Check the time entry</h2><p>No billing result available until valid minutes are entered.</p>';return;}
+  document.getElementById('result').innerHTML=`<h2>${patient==='new'?'New':'Established'} patient · ${method==='cpt'?'CPT':'CMS'} · ${r.minutes} min</h2>
+    <p class="code">${r.eligible?r.code:'Below base time'}</p>
+    <p class="addon">${r.units?'+ '+r.addon+' × '+r.units:'0 units of '+r.addon}</p>
+    ${!r.eligible?`<p class="notice">${r.code} requires at least ${r.base} minutes when selected by time. Consider an appropriate lower-level E/M code; this tool does not select it.</p>`:`<p class="small">${r.units?'Base visit + '+r.units+' prolonged-service unit'+(r.units===1?'':'s')+'.':'Base visit only. First prolonged-service unit starts at '+r.first+' minutes.'}</p>`}
+    <div class="next"><span class="small">Next threshold · ${!r.eligible?r.code:r.addon+' unit '+(r.units+1)}</span><strong>${r.next} total minutes</strong><span class="small">${r.remaining} more qualifying minute${r.remaining===1?'':'s'} needed${r.next>1440?' · beyond one calendar day':''}.</span></div>
+    <p class="small hint">Count only work actually performed and documented. Do not extend care solely to reach a threshold.</p>`;
+}
+minutesInput.addEventListener('input',render);
+slider.addEventListener('input',()=>{minutesInput.value=slider.value;render();});
+document.querySelectorAll('input[type="radio"]').forEach(el=>el.addEventListener('change',render));
+document.getElementById('reset').addEventListener('click',()=>{document.querySelector('input[name="patient"][value="new"]').checked=true;document.querySelector('input[name="method"][value="cpt"]').checked=true;minutesInput.value='75';render();});
+render();
+</script></body></html>
